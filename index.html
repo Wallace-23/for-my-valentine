@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>For My Peace Maker </title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4d6d;
+      --secondary: #c9184a;
+      --dark: #590d22;
+      --soft: #ffb3c1;
+      --glass: rgba(255, 255, 255, 0.1);
+      --glass-heavy: rgba(255, 255, 255, 0.15);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body, html { 
+      margin: 0; padding: 0; width: 100%; min-height: 100%; 
+      font-family: 'Inter', sans-serif; 
+      background: radial-gradient(circle at center, #4a0404 0%, #000 100%);
+      color: #fff; overflow-x: hidden;
+    }
+
+    /* --- Auth Screen --- */
+    #lock-screen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #000; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      transition: opacity 1s ease; padding: 20px;
+    }
+    .lock-box {
+      background: var(--glass); padding: 30px; border-radius: 20px;
+      backdrop-filter: blur(15px); border: 1px solid var(--glass-heavy);
+      width: 100%; max-width: 350px;
+    }
+    input[type="text"] {
+      background: transparent; border: none; border-bottom: 2px solid var(--primary);
+      color: white; font-size: 1.2rem; text-align: center; outline: none; padding: 10px;
+      width: 80%; font-family: 'Playfair Display', serif;
+    }
+    .btn-unlock {
+      margin-top: 25px; padding: 12px 35px; border-radius: 50px;
+      background: var(--primary); border: none; color: white; cursor: pointer;
+      font-weight: bold; letter-spacing: 1px; font-size: 1rem;
+    }
+
+    /* --- Main Layout --- */
+    #main-content { display: none; opacity: 0; transition: opacity 2s ease; }
+    .hero {
+      height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding: 20px;
+    }
+    h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 5rem); margin: 10px 0; color: var(--soft); text-shadow: 0 0 15px var(--primary); }
+    .scroll-down { position: absolute; bottom: 30px; animation: bounce 2s infinite; font-size: 0.8rem; opacity: 0.6; }
+
+    /* --- Content Sections --- */
+    section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+    .card {
+      background: var(--glass); border-radius: 25px; padding: 30px;
+      backdrop-filter: blur(10px); border: 1px solid var(--glass-heavy);
+    }
+    h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 20px; }
+    p { line-height: 1.8; font-size: 1.05rem; color: #f0f0f0; }
+
+    /* --- Responsive Gallery --- */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px; margin-top: 30px;
+    }
+    .gallery-item {
+      aspect-ratio: 3/4; border-radius: 15px; overflow: hidden;
+      border: 2px solid var(--glass-heavy);
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+
+    /* --- Mobile Audio Player --- */
+    .audio-wrap {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      z-index: 100; background: var(--primary); padding: 10px 20px;
+      border-radius: 50px; display: flex; align-items: center;
+      width: auto; min-width: 200px; justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    /* --- Floating Hearts --- */
+    .heart { position: fixed; color: var(--primary); font-size: 20px; pointer-events: none; z-index: 1; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+    @media (max-width: 480px) {
+      section { padding: 40px 15px; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="lock-screen">
+    <div class="lock-box">
+      <h2 style="color:white; margin-top:0;">Secret Word?</h2>
+      <p style="color: var(--soft); font-size: 0.9rem;">The nickname you hold in my heart</p>
+      <input type="text" id="passkey" placeholder="Enter here..."> <br>
+      <button class="btn-unlock" onclick="unlock()">Open My Heart</button>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <div class="audio-wrap">
+        <span style="font-size:11px; font-weight:600; white-space:nowrap; margin-right:15px;">♫ Iyanii - Unanifaa</span>
+        <audio id="bg-music" loop>
+            <source src="Iyanii_-_Unanifaa__Performance_Official_Video_(256k).mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleMusic()" id="music-btn" style="background:white; border:none; color:var(--primary); cursor:pointer; font-size:14px; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">▶</button>
+    </div>
+
+    <div class="hero">
+      <p style="letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; color: var(--soft);">To my beautiful</p>
+      <h1>Peace Maker</h1>
+      <p style="font-style: italic; margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">"In a world of chaos, you are my absolute calm."</p>
+      <div class="scroll-down">Scroll Down ❤️</div>
+    </div>
+
+    <section>
+      <div class="card">
+        <h2>Valentine’s Letter</h2>
+        <p>
+          To my dearest Peace Maker,<br><br>
+          As I sit down to write this, I am reminded of how much color you’ve brought into my life. 
+          Valentine's Day is just one day, but the way you love me makes every ordinary 
+          Tuesday feel like a celebration. <br><br>
+          You aren't just my girlfriend; you are my safe haven. When things get loud, your voice is the 
+          melody that brings me back to earth. You are the "Peace Maker" of my soul. 
+          <br><br>
+          I promise to hold your hand through the storms and dance with you in the sunlight. 
+          You are more than enough. You are my everything.
+          <br><br>
+          I WILL NEVER LEAVE YOU OR TURN BACK FROM YOU. your people will be my people and your god will be my God ,
+          where you die i will die, and there i will be buried. May Lord deal with me ,be it ever so severely, 
+          if even death separates you and me <br><br>
+          <br><br>
+          <b>Nakupenda mnooooo  and   Forever Yours,</b><br>
+          Wallace
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="text-align: center;">Hahahaha  ni vile umegomaga kabisa kupiga picha na mimi lakin whenever i miss you these are my favs to remind me of you</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="IMG_3337.PNG" alt="1"></div>
+        <div class="gallery-item"><img src="IMG-20251115-WA0046.jpg"alt="2"></div>
+        <div class="gallery-item"><img src="IMG-20251115-WA0062.jpg" alt="3"></div>
+        <div class="gallery-item"><img src="IMG-20251115-WA0051.jpg" alt="4"></div>
+        <div class="gallery-item"><img src="IMG-20251115-WA0057.jpg" alt="5"></div>
+        <div class="gallery-item"><img src="IMG-20251115-WA0056.jpg" alt="6"></div>
+      </div>
+    </section>
+
+    <section style="margin-bottom: 100px;">
+      <div class="card" style="text-align: center;">
+        <h2>Why You?</h2>
+        <ul style="list-style: none; padding: 0; line-height: 2.2; font-size: 1.1rem; color: #eee;">
+           <li>✨ You are my true "Peace Maker."</li>
+          <li>✨ Your smile lights up the room.</li>
+          <li>✨ You handle my heart with care.</li>
+          <li>✨ Your kindness is unmatched.</li>
+          <li>✨ Msalaba wako pekee ndo nmesema nitaubeba </li>
+          <li>✨ Because you are YOU, mpaka SAYUNI.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.7rem;">
+      &copy;  Dedicated to my favorite person , my peace maker, only girl who got me 100%.
+    </footer>
+  </div>
+
+  <script>
+    function unlock() {
+      const pass = document.getElementById('passkey').value.toLowerCase().trim();
+      if(pass === "peace maker") {
+        document.getElementById('lock-screen').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('lock-screen').style.display = 'none';
+          document.getElementById('main-content').style.display = 'block';
+          setTimeout(() => {
+            document.getElementById('main-content').style.opacity = '1';
+            startHearts();
+          }, 100);
+        }, 1000);
+      } else {
+        alert("Try again, my love!");
+      }
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const btn = document.getElementById('music-btn');
+      if (audio.paused) {
+        audio.play().catch(e => console.log("Audio play blocked"));
+        btn.innerHTML = "⏸";
+      } else {
+        audio.pause();
+        btn.innerHTML = "▶";
+      }
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 10 + 15) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 6000);
+      }, 500);
+    }
+  </script>
+</body>
+</html>
