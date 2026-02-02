@@ -24,6 +24,41 @@
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
     .audio-wrap { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; background: var(--primary); padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
     .heart { position: fixed; color: var(--primary); font-size: 20px; pointer-events: none; z-index: 1; animation: fall linear forwards; }
+    /* --- Multi-Card Letter Section --- */
+    .letter-stack {
+        padding: 40px 15px;
+        display: flex; flex-direction: column;
+        gap: 40px; align-items: center;
+    }
+    .apology-card {
+        background: var(--glass);
+        border-radius: 24px;
+        padding: 35px 25px;
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-heavy);
+        width: 100%; max-width: 500px;
+        position: relative;
+        box-shadow: var(--card-shadow);
+    }
+    .apology-card:nth-child(even) { transform: rotate(1.5deg); border-left: 3px solid var(--primary); }
+    .apology-card:nth-child(odd) { transform: rotate(-1.5deg); border-right: 3px solid var(--primary); }
+    
+    .apology-card h2 { margin-top: 0; color: var(--soft); font-size: 1.8rem; }
+    
+    /* Updated Card Font Style */
+    .apology-card p { 
+      line-height: 1.8; 
+      color: rgba(255,255,255,0.9); 
+      font-size: 1.1rem;
+      font-family: 'Lora', serif; /* Elegant, poetic font */
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 3.8rem; }
+      .apology-card { padding: 25px 20px; }
+      section h2 { font-size: 1.1rem !important; line-height: 1.6; }
+      .gallery-item, .video-item { max-width: 280px; }
+    }
     @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
   </style>
 </head>
@@ -77,6 +112,46 @@
       
     </section>
 
+    
+     <section class="letter-stack">
+      <div class="apology-card">
+        <h2 style="font-family: 'Dancing Script';">Happy Valentine</h2>
+        <p>Today is about appreciating people who matter, and you're definitelly one of them,
+          thank you for being you through everything i'm greatful for bond we share though i messed up as things are not as they were
+          , i care much kukuhusu and  i always wishing you happiness and good things for you always.
+        </p>
+      </div>
+
+      <div class="apology-card">
+        <h2 style="font-family: 'Dancing Script';">You Are The Only One</h2>
+        <p>You are one of purest soul i have ever know inside and out,
+          and   if cannot have you today, then i will pray for you tomorrow,
+          and i will keep praying until there are no more tomorrows left .</p>
+      </div>
+
+            <div class="apology-card">
+        <h2 style="font-family: 'Dancing Script';"> For You</h2>
+        <p>if i could give you one thing in life, i would give you the ability to see yourself through my eyes,
+          only then would you realize how special you are to me
+        </p>
+      </div>
+
+       <div class="apology-card">
+        <h2 style="font-family: 'Dancing Script';"> My wishlist</h2>
+        <p>
+          <ul style="list-style: none; padding: 0; line-height: 2.2; font-size: 1.1rem; color: #eee;">
+           <li>✨ To get more quality time with you <br>
+          where we can make time for each other, even when life is busy</li>
+          <li>✨ To have more moments together and making memories</li>
+          <li>✨ i want us to growth together, chase our dreams side by side</li>
+          <li>✨ Love expressed in action </li>
+          <li>✨ I wish for us to support each other on hard days, celebrate each other on good ones <br>
+          and never forget to appreciate the little things we do for one another </li>
+          
+        </ul>
+        </p>
+      </div> 
+    </section>
     <section>
     <h2 style="text-align: center;">Hahahaha  ni vile umegomaga kabisa kupiga picha na mimi lakin whenever i miss you these are my favs to remind me of you</h2>
       <div class="gallery-grid">
@@ -130,6 +205,7 @@
   </script>
 </body>
 </html>
+
 
 
 
