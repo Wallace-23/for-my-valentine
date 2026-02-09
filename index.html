@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>For My Peace Maker | Valentine 2026</title>
+  <title>For My Peace Maker</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root { --primary: #ff4d6d; --secondary: #c9184a; --soft: #ffb3c1; --glass: rgba(255, 255, 255, 0.1); --glass-heavy: rgba(255, 255, 255, 0.15); }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    body, html { margin: 0; padding: 0; width: 100%; min-height: 100%; font-family: 'Inter', sans-serif; background: radial-gradient(circle at center, #4a0404 0%, #000 100%); color: #fff; overflow-x: hidden; }
+    body, html { margin: 0; padding: 0; width: 100%; min-height: 100%; font-family: 'Inter', sans-serif; background: radial-gradient(circle at center, #4a0404 0%, #000 100%); color: #fff; overflow-x: hidden; scroll-behavior: auto; }
     #lock-screen { position: fixed; inset: 0; z-index: 9999; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: opacity 1s ease; padding: 20px; }
     .lock-box { background: var(--glass); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px); border: 1px solid var(--glass-heavy); width: 100%; max-width: 350px; }
     input[type="text"] { background: transparent; border: none; border-bottom: 2px solid var(--primary); color: white; font-size: 1.2rem; text-align: center; outline: none; padding: 10px; width: 80%; font-family: 'Playfair Display', serif; }
     .btn-unlock { margin-top: 25px; padding: 12px 35px; border-radius: 50px; background: var(--primary); border: none; color: white; cursor: pointer; font-weight: bold; letter-spacing: 1px; font-size: 1rem; }
     #main-content { display: none; opacity: 0; transition: opacity 2s ease; }
+    html {
+  scroll-padding-top: 0; /* Add this */
+}
     .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; }
     h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 5rem); margin: 10px 0; color: var(--soft); text-shadow: 0 0 15px var(--primary); }
     section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
@@ -208,6 +211,7 @@
     </footer>
   </div>
   <script>
+    window.scrollTo(0, 0);
     function unlock() {
       if(document.getElementById('passkey').value.toLowerCase().trim() === "peace maker") {
         document.getElementById('lock-screen').style.display = 'none';
